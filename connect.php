@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "Mgonnarocksql76";
-$database = "MiniProject";
+$password = ""; //Your MySQL Password
+$database = ""; //Your MySQL Database Name
 
 $conn = new mysqli($servername, $username, $password, $database);
 
