@@ -1,0 +1,60 @@
+create database HotelTransylvania;
+use HotelTransylvania;
+
+create table Rooms(
+RoomNo int Primary Key,
+RoomType varchar(50) NOT NULL,
+CostPerNight decimal(10,2) NOT NULL,
+Vacancy varchar(10) NOT NULL
+);
+
+create table Guests(
+LoginID int Primary Key,
+RoomNo int NOT NULL,
+Name varchar(20) NOT NULL,
+Phone bigint NOT NULL,
+Email varchar(50) NOT NULL,
+Addresss varchar(255) NOT NULL,
+Days int NOT NULL,
+Foreign Key (RoomNo) references Rooms(RoomNo)
+);
+
+
+INSERT INTO Rooms (RoomNo, RoomType, CostPerNight, Vacancy)
+VALUES
+(100, 'Single', 2000, 'Available'),
+(101, 'Single', 2000, 'Available'),
+(102, 'Single', 2000, 'Available'),
+(103, 'Single', 2000, 'Available'),
+(104, 'Double', 3500, 'Available'),
+(105, 'Suite', 5000, 'Available'),
+(200, 'Single', 2000, 'Available'),
+(201, 'Single', 2000, 'Available'),
+(202, 'Single', 2000, 'Available'),
+(203, 'Single', 2000, 'Available'),
+(204, 'Double', 3500, 'Available'),
+(205, 'Suite', 5000, 'Available');
+
+create table Admins(
+username varchar(50) Primary Key,
+password varchar(10) NOT NULL
+);
+
+insert into Admins (username, password) values ("Admin1", "Password1"), ("Admin2", "Password2");
+
+DELIMITER //
+CREATE TRIGGER updateVacancyOnGuestDelete
+AFTER DELETE ON Guests
+FOR EACH ROW
+BEGIN
+    UPDATE Rooms
+    SET Vacancy = 'Available'
+    WHERE RoomNo = OLD.RoomNo;
+END//
+DELIMITER ;
+
+
+
+
+
+ 
