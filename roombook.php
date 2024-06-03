@@ -37,7 +37,7 @@
                     echo "</tr>";
                 }
             } else {
-                echo "<tr><td colspan='4'>No rooms available!</td></tr>";
+                echo '<script>alert("No rooms available!")</script>';
             }
             ?>
         </table>
@@ -126,7 +126,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "Error: " . $insertGuestSql . "<br>" . $conn->error;
         }
     } else {
-        echo "The room number $roomNo is not available for booking.";
+        echo '<script>alert("Room is not available!")</script>';
     }
 }
 
